@@ -52,6 +52,7 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+docs/build/
 
 # PyBuilder
 target/
@@ -165,3 +166,6 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+# rope
+.ropeproject/
