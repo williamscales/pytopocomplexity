@@ -3,7 +3,6 @@
 
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
-from builtins import *
 from future.builtins import (ascii, bytes, chr, dict, filter, hex, input, int,
                              map, next, oct, open, pow, range, round, str,
                              super, zip)
@@ -45,18 +44,18 @@ def main(argv=None):
     package_author = 'William Scales'
     package_author_email = 'william@wscales.com'
     license = 'Apache Software License'
-    short_description = 'Algorithms using entropy to estimate complexity of'\
+    short_description = 'Algorithms using entropy to estimate complexity of'
                         ' high dimensional functions'
     long_description = read('README.rst')
     required = [
         'future',
         'numpy',
-        'scipy'
+        'scipy',
     ]
     extras = {
         'develop': [
             'sphinx',
-            'pytest'
+            'pytest',
         ]
     }
     classifiers = [
@@ -75,7 +74,7 @@ def main(argv=None):
         'Programming Language :: Python :: 3.4',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Mathematics',
-        'Topic :: Scientific/Engineering :: Physics'
+        'Topic :: Scientific/Engineering :: Physics',
     ],
     keywords = 'complexity, optimization'
 
