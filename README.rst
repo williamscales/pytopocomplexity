@@ -1,8 +1,11 @@
 pytopocomplexity
 ================
 .. image:: https://travis-ci.org/williamscales/pytopocomplexity.svg?branch=master
-   :alt: Travis CI build status
    :target: https://travis-ci.org/williamscales/pytopocomplexity
+   :alt: Travis CI build status
+.. image:: https://readthedocs.org/projects/pytopocomplexity/badge/?version=latest
+   :target: https://readthedocs.org/projects/pytopocomplexity/?badge=latest
+   :alt: Documentation Status
 
 Overview
 --------
