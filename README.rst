@@ -3,7 +3,7 @@ pytopocomplexity
 .. image:: https://img.shields.io/travis/williamscales/pytopocomplexity.svg?style=flat
    :target: https://travis-ci.org/williamscales/pytopocomplexity
    :alt: Travis CI build status
-.. image:: https://img.shields.io/coveralls/williamscales/pytopocomplexity.svg
+.. image:: https://img.shields.io/coveralls/williamscales/pytopocomplexity.svg?style=flat
    :target: https://coveralls.io/r/williamscales/pytopocomplexity
    :alt: Coverage status
 .. image:: https://readthedocs.org/projects/pytopocomplexity/badge/?version=latest
