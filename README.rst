@@ -1,6 +1,6 @@
-.. image::
-https://travis-ci.org/williamscales/pytopocomplexity.svg?branch=master
-    :target: https://travis-ci.org/williamscales/pytopocomplexityo
+.. image:: https://travis-ci.org/williamscales/pytopocomplexity.svg?branch=master
+   :alt: Travis CI build status
+   :target: https://travis-ci.org/williamscales/pytopocomplexity
 
 pytopocomplexity
 ================
