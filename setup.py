@@ -44,7 +44,7 @@ def main(argv=None):
     package_author = 'William Scales'
     package_author_email = 'william@wscales.com'
     license = 'Apache Software License'
-    short_description = 'Algorithms using entropy to estimate complexity of'
+    short_description = 'Algorithms using entropy to estimate complexity of'\
                         ' high dimensional functions'
     long_description = read('README.rst')
     required = [

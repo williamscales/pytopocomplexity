@@ -1,11 +1,14 @@
 pytopocomplexity
 ================
-.. image:: https://travis-ci.org/williamscales/pytopocomplexity.svg?branch=master
+.. image:: https://img.shields.io/travis/williamscales/pytopocomplexity.svg?style=flat
    :target: https://travis-ci.org/williamscales/pytopocomplexity
    :alt: Travis CI build status
+.. image:: https://img.shields.io/coveralls/williamscales/pytopocomplexity.svg
+   :target: https://coveralls.io/r/williamscales/pytopocomplexity
+   :alt: Coverage status
 .. image:: https://readthedocs.org/projects/pytopocomplexity/badge/?version=latest
    :target: https://readthedocs.org/projects/pytopocomplexity/?badge=latest
-   :alt: Documentation Status
+   :alt: Documentation status
 
 Overview
 --------
@@ -16,13 +19,17 @@ energy landscapes. Additionally, some examples are included.
 Requirements
 ------------
 pytopocomplexity requires the following:
+
 * future
 * numpy
 * scipy
 
 Additionally, if you want to build the documentation and run the tests you need:
+
 * sphinx
 * pytest
+* pytest-cov
+* coveralls
 
 You can get a complete development environment by installing and setting up
 virtualenv and virtualenvwrapper following this guide_ and then running the

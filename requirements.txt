@@ -3,3 +3,6 @@ numpy
 scipy
 sphinx
 pytest
+pytest-cov
+coveralls
+tox
