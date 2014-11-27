@@ -1,10 +1,11 @@
 language: python
-python:
-    - "3.4"
-    - "3.3"
-    - "2.7"
-    - "2.6"
 install:
-    - "pip install -r requirements.txt"
+    - "pip install tox"
     - "pip install ."
-script: py.test
+script:
+    - tox
+env:
+    - TOXENV=py26
+    - TOXENV=py27
+    - TOXENV=py33
+    - TOXENV=py34
