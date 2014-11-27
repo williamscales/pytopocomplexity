@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # coding=utf-8
+"""Tests for `pytopocomplexity.util`"""
 
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
@@ -34,4 +35,4 @@ def test_normalize_unit_vector():
 def test_normalize():
     """Test that normalize correctly normalizes a non-unit vector."""
     x = random_sample((3,))
-    assert norm(normalize(x)) == 1
+    assert np.isclose([norm(normalize(x))], [1]).all()
