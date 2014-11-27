@@ -33,6 +33,6 @@ def test_normalize_unit_vector():
 
 
 def test_normalize():
-    """Test that normalize correctly normalizes a non-unit vector."""
+    """Test that normalize correctly normalizes a random non-unit vector."""
     x = random_sample((3,))
     assert np.isclose([norm(normalize(x))], [1]).all()
