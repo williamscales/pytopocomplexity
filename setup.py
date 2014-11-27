@@ -51,6 +51,7 @@ def main(argv=None):
     required = [
         'future',
         'numpy',
+        'scipy'
     ]
     extras = {
         'develop': [

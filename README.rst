@@ -15,6 +15,7 @@ Requirements
 pytopocomplexity requires the following:
 * future
 * numpy
+* scipy
 
 Additionally, if you want to build the documentation and run the tests you need:
 * sphinx
