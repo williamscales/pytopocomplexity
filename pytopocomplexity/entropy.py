@@ -11,7 +11,6 @@ from future.builtins import (ascii, bytes, chr, dict, filter, hex, input, int,
 import numpy as np
 
 from pytopocomplexity.search import random_hill_climbing
-from pytopocomplexity.util import normalize
 
 
 def estimate_entropy(objective_function, initial_models, tolerance,
@@ -50,15 +49,16 @@ def estimate_entropy(objective_function, initial_models, tolerance,
     normed_function_values = np.abs(function_values - min_function_values)
     sigma = 1/num_minima*np.sum(normed_function_values)
 
-    if sigma == 0:
-        v = np.zeros([num_minima])
+    # np.isclose() checks whether floats are epsilon close
+    if np.isclose([sigma], [0]).all():
+        v = np.ones([num_minima])
     else:
         v = np.exp(-np.abs(function_values - min_function_values)/sigma)
 
     x = frequencies/len(initial_models)
 
     q_unnormed = x*v
-    q_normed = normalize(q_unnormed)
+    q_normed = q_unnormed/np.sum(q_unnormed)
 
     entropy = -np.sum(q_normed*np.log(q_normed))
 
