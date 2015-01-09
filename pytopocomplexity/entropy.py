@@ -20,12 +20,7 @@ def compute_entropy(objective_function, local_minima):
     """Exactly compute the entropy of an objective function (Definition 1 in the
     paper).
 
-    First, we compute the probability that a model chosen with uniform
-    probability from the model space will converge to a given basin of
-    attraction. We do this using equation 1 from the paper.
-
-    We then scale this by an estimate of the depths of the basins of attraction
-    and compute the entropy of this quantity.
+    We will do this using Monte Carlo methods.
 
     Parameters
     ----------
@@ -39,12 +34,7 @@ def compute_entropy(objective_function, local_minima):
     entropy : float
         The computed topographical entropy of the objective function.
     """
-
-    # probabilities[i] corresponds to the ith global minimum
-    probabilities = [0]*len(local_minima)
-
-    function_values = np.array([objective_function(m) for m in local_minima])
-
+    pass
 
 def estimate_entropy(objective_function, initial_models, tolerance,
                      max_iterations):
