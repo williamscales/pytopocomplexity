@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Estimate the entropy of a given objective function."""
+"""Functions to compute the entropic complexity of a given objective
+function.
+
+"""
 
 from __future__ import (absolute_import, division, print_function,
                         unicode_literals)
@@ -13,9 +16,40 @@ import numpy as np
 from pytopocomplexity.search import random_hill_climbing
 
 
+def compute_entropy(objective_function, local_minima):
+    """Exactly compute the entropy of an objective function (Definition 1 in the
+    paper).
+
+    First, we compute the probability that a model chosen with uniform
+    probability from the model space will converge to a given basin of
+    attraction. We do this using equation 1 from the paper.
+
+    We then scale this by an estimate of the depths of the basins of attraction
+    and compute the entropy of this quantity.
+
+    Parameters
+    ----------
+    objective_function : function
+        Objective function whose entropy will be computed
+    local_minima : list
+        A list of the distinct, isolated local minima of the objective function.
+
+    Returns
+    -------
+    entropy : float
+        The computed topographical entropy of the objective function.
+    """
+
+    # probabilities[i] corresponds to the ith global minimum
+    probabilities = [0]*len(local_minima)
+
+    function_values = np.array([objective_function(m) for m in local_minima])
+
+
 def estimate_entropy(objective_function, initial_models, tolerance,
                      max_iterations):
-    """Estimate entropy of an objective function.
+    """Estimate the entropy of an objective function (Definition 2 in the
+    paper).
 
     Parameters
     ----------

@@ -13,6 +13,13 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+import mock
+
+MOCK_MODULES = ['numpy', 'scipy', 'matplotlib', 'matplotlib.pyplot',
+                'scipy.optimize', 'scipy.linalg']
+for mod_name in MOCK_MODULES:
+sys.modules[mod_name] = mock.Mock()
+
 import sys
 import os
 

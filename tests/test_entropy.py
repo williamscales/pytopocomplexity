@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf-8
+# -*- coding: utf-8 -*-
 """Tests for `pytopocomplexity.entropy`"""
 
 from __future__ import (absolute_import, division, print_function,

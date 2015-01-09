@@ -36,7 +36,6 @@ virtualenv and virtualenvwrapper following this guide_ and then running the
 following::
 
 $ mkvirtualenv pytopocomplexity --python=$(which python3.4)
-$ workon pytopocomplexity
 $ pip install -r /path/to/pytopocomplexity/requirements.txt
 
 If you want Python 2.6, 2.7, or 3.4 instead (these are the supported versions),
