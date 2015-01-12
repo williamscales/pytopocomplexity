@@ -14,30 +14,56 @@ from future.builtins import (ascii, bytes, chr, dict, filter, hex, input, int,
 import numpy as np
 
 from pytopocomplexity.search import random_hill_climbing
+from pytopocomplexity.util import normalize, sample_box
 
 
-def compute_entropy(objective_function, local_minima):
+def compute_entropy(objective_function, bounds):
     """Exactly compute the entropy of an objective function (Definition 1 in the
     paper).
 
-    We will do this using Monte Carlo methods.
+    We will do this using a Monte Carlo method. First we uniformly sample the
+    model space. Then we run the models downhill and determine in which basin of
+    attraction each one lies. This lets us compute the volume of the basin of
+    attraction. Then we can directly compute the entropy.
 
     Parameters
     ----------
     objective_function : function
         Objective function whose entropy will be computed
-    local_minima : list
-        A list of the distinct, isolated local minima of the objective function.
+    bounds : list
+        A list of n 2-tuples corresponding to the lower and upper bounds of each
+        of the n coordinate axes.
 
     Returns
     -------
     entropy : float
         The computed topographical entropy of the objective function.
     """
-    pass
+    num_samples = 100
+    points = sample_box(bounds, num_samples)
+    minima, frequencies = random_hill_climbing(objective_function, points)
+    global_minimum = min(minima)
+    num_minima = len(minima)
 
-def estimate_entropy(objective_function, initial_models, tolerance,
-                     max_iterations):
+    # The probability of converging to a given basin of attraction
+    probabilities = [f/num_samples for f in frequencies]
+    probabilities = normalize(probabilities)
+    function_values = [objective_function(m) for m in minima]
+    normed_function_values = np.array([np.abs(y - global_minimum) for y in
+                                       function_values])
+    sigma = 1/num_minima*np.sum(normed_function_values)
+    if not np.isclose([sigma], [0]).all():
+        probabilities = probabilities*np.exp(-np.abs(function_values -
+                                                     global_minimum)/sigma)
+        probabilities = normalize(probabilities)
+
+    print(np.sum(probabilities))
+    entropy = -np.sum(probabilities*np.log(probabilities))
+    return entropy
+
+
+def estimate_entropy(objective_function, initial_models, tolerance=None,
+                     max_iterations=None):
     """Estimate the entropy of an objective function (Definition 2 in the
     paper).
 
@@ -73,7 +99,6 @@ def estimate_entropy(objective_function, initial_models, tolerance,
     normed_function_values = np.abs(function_values - min_function_values)
     sigma = 1/num_minima*np.sum(normed_function_values)
 
-    # np.isclose() checks whether floats are epsilon close
     if np.isclose([sigma], [0]).all():
         v = np.ones([num_minima])
     else:
@@ -87,3 +112,11 @@ def estimate_entropy(objective_function, initial_models, tolerance,
     entropy = -np.sum(q_normed*np.log(q_normed))
 
     return entropy
+
+
+if __name__ == '__main__':
+    def f(x):
+        return np.sin(x)
+    bounds = [(0, np.pi)]
+    entropy = compute_entropy(f, bounds)
+    print(entropy)

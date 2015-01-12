@@ -8,13 +8,12 @@ from future.builtins import (ascii, bytes, chr, dict, filter, hex, input, int,
                              map, next, oct, open, pow, range, round, str,
                              super, zip)
 
-from collections import Counter
-
-import numpy as np
+from numpy import isclose
 from scipy.optimize import fmin_cg
 
 
-def random_hill_climbing(func, initial_models, tolerance, max_iterations):
+def random_hill_climbing(func, initial_models, tolerance=None,
+                         max_iterations=None):
     """Minimize a given function using a random hill climbing strategy
 
     Parameters
@@ -38,12 +37,18 @@ def random_hill_climbing(func, initial_models, tolerance, max_iterations):
 
     """
     minima = []
-    frequencies = Counter()
+    frequencies = []
     for initial_model in initial_models:
-        minimum = fmin_cg(func, initial_model, maxiter=max_iterations,
-                          gtol=tolerance)
-        if frequencies[minimum[0]] == 0:
-            minima.append(minimum)
-        frequencies[minimum[0]] += 1
-    frequencies_list = np.array([frequencies[m[0]] for m in minima])
-    return (minima, frequencies_list)
+        minimum = fmin_cg(func, initial_model, gtol=1e-6)
+        if len(minima) > 0:
+            for index, m in enumerate(minima):
+                if isclose([minimum], [m]).all():
+                    frequencies[index] += 1
+                    break
+                minima.append(minimum)
+                frequencies.append(1)
+        else:
+            minima = [minimum]
+            frequencies = [1]
+
+    return (minima, frequencies)
